@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+    background-color: #1b5e20;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.link {
+    color:antiquewhite;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+.card-noticia h2 {
+    color: #2e7d32;
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.card-noticia p {
+    color: #666;
+    font-size: 20px;
+}
+
+.card-noticia{
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.card-noticia img {
+    max-width: 100%;
+    border-radius: 10px;
+} 
