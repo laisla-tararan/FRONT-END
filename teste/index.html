@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <title> Exemplo TechFood - Grid + Media Query </title>
+</head>
+<body>
+    <header id="topo-loja">
+        <h1>TechFood - Sabor e Saber</h1>
+        <input type="checkbox" id="bt_menu"/> 
+        <label for="bt_menu" id="label_menu">&#9776;</label> 
+
+        <nav id="menu">
+            <ul>
+                <li><a href="#secao_massas"> MASSAS </a></li>
+                <li><a href="#secao_sobremeses"> SOBREMESAS </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="secao-massas">
+            <h2 class="titulo-secao"> NOSSAS MASSAS </h2>
+
+            <div class="vitrine-grid"> 
+                <article class="card">
+                    <img src="src/images/lasanha.png" alt="Lasanha à Bolonhesa">
+                    <h3> Lasanha à Bolonhesa </h3>
+                    <p class="desc"> Camadas de massa artesanal, ragù de carne suculento e molho branco aveludado, tudo coberto por um queijo gratinado irresistível. É puro conforto em cada garfada! </p>
+                    <span class="preco"> R$45,00 </span>
+                    <button class="bt_pedido"> Pedir Agora </button>
+                </article>
+                <article class="card">
+                    <img src="src/images/ravioli.png" alt="Ravioli ao Molho de Quatro Queijos">
+                    <h3> Ravioli ao Molho de Quatro Queijos </h3>
+                    <p class="desc"> Massa artesanal delicada e recheada, envolta em um molho cremoso e aveludado que combina a intensidade do gorgonzola, a suavidade da muçarela, o sabor marcante do parmesão e a textura do provolone. Uma explosão de cremosidade finalizada com um toque de ervas finas. </p>
+                    <span class="preco"> R$55,00 </span>
+                    <button class="bt_pedido"> Pedir Agora </button>
+                </article>
+                <article class="card">
+                    <img src="src/images/macarrao.png" alt="Macarrão ao Molho Béchamel">
+                    <h3> Macarrão ao Molho Béchamel </h3>
+                    <p class="desc"> O nosso Macarrão ao Molho Béchamel é a definição de sofisticação e conforto. Massa al dente envolvida em um molho branco clássico, sedoso e aveludado, preparado com manteiga, leite e um toque sutil de noz-moscada. Uma experiência cremosa, leve e irresistível, finalizada com parmesão gratinado. </p>
+                    <span class="preco"> R$35,00 </span>
+                    <button class="bt_pedido"> Pedir Agora </button>
+                </article>
+            </div>
+        </section>
+        <section id="secao-sobremesas">
+            <h2 class="titulo-secao"> NOSSAS SOBREMESAS </h2>
+
+            <div class="vitrine-grid"> 
+                <article class="card">
+                    <img src="src/images/lasanha_uva.jpg" alt="Lasanha de Uva">
+                    <h3> Lasanha de Uva </h3>
+                    <p class="desc"> Camadas de uvas frescas e creme branco aveludado, cobertas por uma ganache de chocolate irresistível. O equilíbrio perfeito entre o frescor da fruta e a cremosidade do chocolate. </p>
+                    <span class="preco"> R$15,00 </span>
+                    <button class="bt_pedido"> Pedir Agora </button>
+                </article>
+                <article class="card">
+                    <img src="src/images/gelato.png" alt="Gelatto italiano de Kinder Bueno">
+                    <h3> Gelatto Italiano de Kinder Bueno </h3>
+                    <p class="desc"> Uma experiência inesquecível que combina a cremosidade do leite com o sabor marcante das avelãs. Intercalado com pedaços crocantes de chocolate e um toque aveludado de creme de avelã, este gelato é a tradução perfeita do chocolate favorito em forma de frescor. </p>
+                    <span class="preco"> R$15,00 </span>
+                    <button class="bt_pedido"> Pedir Agora </button>
+                </article>
+                <article class="card">
+                    <img src="src/images/tiramisu.png" alt="Tirámisu">
+                    <h3> Tirámisu </h3>
+                    <p class="desc"> A mais famosa sobremesa italiana que equilibra o sabor intenso do café com a suavidade do creme de queijo mascarpone. Camadas de biscoitos delicados umedecidos em café espresso, finalizadas com uma generosa polvilhada de cacau puro. Uma combinação sofisticada, leve e irresistivelmente cremosa. </p>
+                    <span class="preco"> R$10,00 </span>
+                    <button class="bt_pedido"> Pedir Agora </button>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer id="rodape">
+        <div class="info-footer">
+            <p><strong>TechFood 2026 &#169; </strong></p>
+            <p> R. Italiana 001, Jd. Nações - Salto/SP</p>
+        </div>
+    </footer>
+</body>
+</html
