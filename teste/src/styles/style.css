@@ -1,3 +1,4 @@
+/*Estrutura Cabeçalho*/
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +15,7 @@
 
 #bt_menu, #label_menu {
     display: none;
-}
+} /* tirar as bolinhas da lista */
 
 #menu ul {
     list-style: none;
@@ -34,6 +35,125 @@
 
 .titulo-secao {
     text-align: center;
-    margin-top: 20px;
-    background-color: #540404;
+    margin-top: 10px;
+    font-style: italic;
 }
+
+/* Estrutura Inicial GRID - DESKTOP */
+.vitrine-grid{
+    display: grid; /*exibindo o grid*/
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 10px;
+}
+
+.card {
+    border: 1px solid #540404;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Conteúdo */
+.preco {
+    display: block;
+    color: #e40505;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.bt-pedido {
+    background-color:#315a0a;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor:pointer;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card p {
+  flex-grow: 1; /* O texto "estica" para ocupar o espaço vazio */
+}
+
+#rodape {
+    background-color: #540404;
+    color:antiquewhite ;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Medias */
+@media screen {
+    #topo-loja h1 {
+        /* altera o espaço entre as letras */
+        letter-spacing: 2px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tela Tablet */
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .vitrine-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tela Celular */
+@media screen and (max-width: 600px), (orientation: portrait){
+    /*menu hamburguer responsivo e retratil*/
+    #label_menu {
+        display: block;
+        font-size: 2.5rem;
+        color:#d3b78e;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    #menu ul {
+        display: none;
+    }
+    /* Verificando o bt_menu se está clicado e se tem irmão #menu*/
+    #bt_menu:checked ~ #menu ul {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .vitrine-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .desc {
+        display: none;
+    }
+
+    #menu li {
+        display: block;
+        margin: 15px;
+        border-bottom: 1px solid #d3b78e;
+        padding-bottom: 10px;
+    }
+}
+
+@media not screen {
+    #menu, .bt-pedido, #label_menu, #bt-menu {
+        display: none;
+    }
+}
+
