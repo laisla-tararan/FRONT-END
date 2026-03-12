@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/scripts/scripts-dom/novo.js">
     <title> Exemplo TechFood - Grid + Media Query </title>
 </head>
 <body>
     <header id="topo-loja">
         <h1>TechFood - Sabor&Saber</h1>
+        <p id="boas-vindas">Carregando...</p>
         <input type="checkbox" id="bt_menu"/> 
         <label for="bt_menu" id="label_menu">&#9776;</label> 
 
@@ -24,8 +26,8 @@
             <h2 class="titulo-secao"> NOSSAS MASSAS </h2>
 
             <div class="vitrine-grid"> <!---container pai para o grid--->
-                <article class="card">
-                    <img src="src/images/lasanha.png" alt="Lasanha à Bolonhesa">
+                <article class="card" id="card-lasanha">
+                    <img src="src/images/lasanha.png" alt="Lasanha à Bolonhesa" id="foto-destaque">
                     <h3> Lasanha à Bolonhesa </h3>
                     <p class="desc"> Camadas de massa artesanal, ragù de carne suculento e molho branco aveludado, tudo coberto por um queijo gratinado irresistível. É puro conforto em cada garfada! </p>
                     <span class="preco"> R$45,00 </span>
@@ -81,6 +83,9 @@
             <p> R. Italiana 001, Jd. Nações - Salto/SP</p>
         </div>
     </footer>
+    <!-- <script src="src/scripts/antigo.js"></script>
+    <script src="src/scripts/novo.js"></script> -->
     <script src="src/scripts/aula4.js" defer ></script>
+    <script src="./src/scripts/novo.js"></script>
 </body>
 </html
