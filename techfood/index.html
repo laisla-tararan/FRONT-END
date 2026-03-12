@@ -26,11 +26,17 @@
             <h2 class="titulo-secao"> NOSSAS MASSAS </h2>
 
             <div class="vitrine-grid"> <!---container pai para o grid--->
-                <article class="card" id="card-lasanha">
+                <article class="card" id="card-lasanha" class="em-promocao">
                     <img src="src/images/lasanha.png" alt="Lasanha à Bolonhesa" id="foto-destaque">
                     <h3> Lasanha à Bolonhesa </h3>
                     <p class="desc"> Camadas de massa artesanal, ragù de carne suculento e molho branco aveludado, tudo coberto por um queijo gratinado irresistível. É puro conforto em cada garfada! </p>
-                    <span class="preco"> R$45,00 </span>
+
+                    <div class="quantidade">
+                        <label for="qtd-lasanha"></label>
+                        <input type="number" id="qtd_lasanha" value="1" min="1">
+                    </div>
+
+                    <span class="preco" id="preco-lasanha"> R$45,00 </span>
                     <button class="bt-pedido"> Pedir Agora </button>
                 </article>
                 <article class="card">
@@ -85,7 +91,8 @@
     </footer>
     <!-- <script src="src/scripts/antigo.js"></script>
     <script src="src/scripts/novo.js"></script> -->
-    <script src="src/scripts/aula4.js" defer ></script>
-    <script src="./src/scripts/novo.js"></script>
+    <!-- <script src="src/scripts/aula4.js" defer ></script> -->
+    <script src="src/scripts/novo.js"></script>
+    <script src="src/scripts/aula6.js"></script>
 </body>
 </html

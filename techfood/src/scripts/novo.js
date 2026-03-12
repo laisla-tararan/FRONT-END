@@ -2,7 +2,7 @@
 
 // 1. Especificidade total: Buscando o h3 apenas dentro de um ID específico
 // Isso evita pegar o h3 da Lasanha por engano.
-const tituloNhoque = document.querySelector('#card-nhoque h3');
+const tituloLasanha = document.querySelector('#card-lasanha h3');
 
 // 2. Selecionando múltiplos elementos: Todos os botões que têm a classe .btn-pedido
 const botoesCompra = document.querySelectorAll('.btn-pedido');
@@ -15,16 +15,17 @@ const terceiroCard = document.querySelector('.card:nth-child(3)') //mostrar o qu
 
 // manipulando atributos
 const imagem_lasanha = document.querySelector('#foto-destaque')
+
 imagem_lasanha.alt = 'Produto esgotado'
-imagem_lasanha.src = './src/images/esgotado.jpg'
+//imagem_lasanha.src = './src/images/esgotado.jpg'
 
-
+tituloLasanha.style.color = 'yellow'
 
 const card_lasanha = document.querySelector('#card-lasanha')
 
+card_lasanha.classList.add('em-promocao')
 
-
-console.log('Mostrando o titulo nhoque', tituloNhoque)
+console.log('Mostrando o titulo lasanha', tituloLasanha)
 console.log('quantidade de botôes de pedido', botoesCompra.length)
 console.log('2. Quantidade de botões de pedido', botoesCompra)
 console.log('terceiro card', terceiroCard)
@@ -34,6 +35,15 @@ const hora = data.getHours()
 
 const saudacao = document.querySelector('#boas-vindas')
 
-saudacao.textContent = hora < 18 && hora > 12 ? 'Bem vindo! boa tarde!' : hora > 18 && hora < 24 ? 'Bem vindo! boa noite!' : 'Bem vindo! Bom dia!'
+//saudacao.textContent = hora < 18 && hora > 12 ? 'Bem vindo! boa tarde!' : hora > 18 && hora < 24 ? 'Bem vindo! boa noite!' : 'Bem vindo! Bom dia!'
 
-seuNome.innerHTML =  "<strong>Meu nome é Celso</strong>" //TEM QUE SER TUDO ENTRE ASPAS
+//seuNome.innerHTML =  "<strong>Meu nome é Celso</strong>" //TEM QUE SER TUDO ENTRE ASPAS
+
+const campoNome = document.querySelector('#nome');
+const campoPreco = document.querySelector('#preco');
+function processar() {
+ const nome = campoNome.value; // Captura o texto (ex: "Pizza")
+ const preco = Number(campoPreco.value); // CONVERSÃO: Texto para Número
+
+ console.log(`Produto: ${nome} | Preço: ${preco}`);
+}
