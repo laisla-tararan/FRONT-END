@@ -71,3 +71,6 @@ tituloPrincipal.style.borderBottom = "3px solid #2c3e50";
 cardDestaque.classList.add('em-promocao');
 
 console.log("Manipulação DOM Aula 5: Concluída com sucesso!");
+
+const box = document.querySelector('.mensagem');
+document.body.classList.toggle('dark-mode');
