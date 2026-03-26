@@ -31,6 +31,6 @@ const reset = document.querySelector('#btn-reset')
 
 reset.addEventListener('click', function(){
     contar = 0,
-    contador.innerText = 0
-    texto.innerText = ''
+    contador.textContent = 0
+    campo.value() = ''
 })
