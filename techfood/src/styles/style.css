@@ -165,3 +165,129 @@
     transform: scale(1.05); /* Dá um leve zoom no card */
     box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
 }
+
+/* ═══════════════════════════════════════════════════════
+   AULA 7 — Estilos novos
+   ═══════════════════════════════════════════════════════ */
+
+/* Badge inserido pelo insertAdjacentHTML dentro do card */
+.badge-adicionado {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 10px;
+  background-color: #27ae60;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Seção de resumo — começa oculta, JS exibe quando necessário */
+#secao-resumo {
+  display: none;
+  max-width: 700px;
+  margin: 20px auto 40px;
+  padding: 25px;
+  background: #fff;
+  border: 2px solid #e67e22;
+  border-radius: 12px;
+}
+
+/* Lista de itens criados com createElement */
+#lista-resumo {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+/* Cada <li> criado pela função adicionarItemAoResumo() */
+.item-resumo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+  color: #333;
+  /* Animação suave de entrada — o item "desce" ao aparecer */
+  animation: entrar 0.2s ease;
+}
+
+.item-resumo:last-child {
+  border-bottom: none;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão ✕ para remover item individual (criado com createElement) */
+.btn-remover {
+  background: none;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.btn-remover:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* Botão "Limpar tudo" */
+#btn-limpar {
+  background: none;
+  border: 1px solid #2c3e50;
+  color: #2c3e50;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.15s;
+}
+
+#btn-limpar:hover {
+  background: #2c3e50;
+  color: #fff;
+}
+
+/* --- RESPONSIVIDADE (mantida das aulas anteriores) --- */
+@media screen and (max-width: 768px) {
+  .vitrine-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #label-menu {
+    display: block;
+    font-size: 2rem;
+    color: #f1c40f;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+
+  #menu ul {
+    display: none;
+  }
+
+  #bt_menu:checked ~ #menu ul {
+    display: block;
+  }
+
+  .vitrine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-pedido {
+    padding: 15px;
+  }
+}

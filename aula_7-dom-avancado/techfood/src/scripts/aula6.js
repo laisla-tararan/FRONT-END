@@ -6,7 +6,7 @@ if(inputQtd && precoTexto){
         const precoUnitario = 45.0
         const total = Number(inputQtd.value) * precoUnitario
 
-        precoTexto.innerHTML = `R$${total.toFixed(2)}`
+        precoTexto.textContent = `R$${total.toFixed(2)}`
     })
 }
 
