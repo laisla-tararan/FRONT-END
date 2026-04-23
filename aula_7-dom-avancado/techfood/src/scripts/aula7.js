@@ -143,4 +143,3 @@ if (btnLimpar) {
         secaoResumo.style.display = 'none'
     })
 }
-
