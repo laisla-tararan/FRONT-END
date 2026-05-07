@@ -1,50 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    renderizarPedidos()
-    //continua...
-})
+document.addEventListener("DOMContentLoaded", function () {
+  renderizarPedidos();
+});
 
 function renderizarPedidos() {
-    const lista = document.querySelector('#lista-pedidos')
-    const spanTotal = document.querySelector('#valor-total')
-    const spanResumo = document.querySelector('#valor-total-resumo')
-    const spanContador = document.querySelector('#contador-itens')
+    const lista = document.querySelector("#lista-pedidos");
+    const spanTotal = document.querySelector("#valor-total");
+    const spanResumo = document.querySelector("#valor-total-resumo");
+    const spanContador = document.querySelector("#contador-itens");
 
+    // Se não encontrar a lista, interrompe a função
     if (!lista) return;
 
-    const pedidos = JSON.parse(localStorage.getItem('techfood_pedidos') || '[]')
+    const pedidos = JSON.parse(localStorage.getItem("techfood_pedidos") || "[]");
 
-    if(pedidos.length === 0){
-        lista.innerHTML = "<li class='pedido-vazio'> Nenhum pedido ainda. Acesse o" + "<a href='index.html> Cardápio </a> Para adicionar! 😋 </li>"
+    if (pedidos.length === 0) {
+        lista.innerHTML =
+        "<li class='pedido-vazio'> Nenhum pedido ainda. Acesse o" +
+        "<a href='index.html> Cardápio </a> Para adicionar! 😋 </li>";
 
-        if(spanTotal) spanTotal.textContent = 'R$ 0,00'
-        if(spanResumo) spanResumo.textContent = 'R$ 0,00'
-        if(spanContador) spanContador.textContent = '0 itens.'
+        if (spanTotal) spanTotal.textContent = "R$0,00";
+        if (spanResumo) spanResumo.textContent = "R$0,00";
+        if (spanContador) spanContador = "0 itens";
     }
 
-    lista.innerHTML = '' //zera o conteúdo.
-    let total = 0 //cria uma variável e permite que seja utilizada em outras funções (let).
+    lista.innerHTML = "";
+    let total = 0;
+    pedidos.forEach(function (pedido, indice) {
+        const li = document.createElement("li");
+        li.classList.add("item-pedido");
 
+        const textoSpan = document.createElement("span");
+        textoSpan.innerHTML =
+        "<strong>" +
+        pedido.nome +
+        "</strong>" +
+        "-" +
+        pedido.qtd +
+        "X" +
+        "R$" +
+        pedido.preco.toFixed(2).replace(".", ",") +
+        '= <span class= "subtotal-item"> R$' +
+        pedido.subtotal.toFixed(2).replace(".", ",");
 
+        // Cria um botão para remover o item do resumo
+        const btnRemover = document.createElement("button");
 
-    const textoSpan = document.createElement("span");
-    textoSpan.innerHTML = ''
+        // Define o texto do botão como "X"
+        btnRemover.textContent = "✕";
 
-    const btnRemover = document.createElement("button");
-    btnRemover.textContent = "✕";
-    btnRemover.classList.add("btn-remover");
+        // Adiciona uma classe ao botão para estilização
+        btnRemover.classList.add("btn-remover");
 
-    // Lógica de remover movida para DENTRO da função para acessar as variáveis
-    btnRemover.addEventListener('click', () => {
-        itemLi.remove();
-        const badge = cardOrigem.querySelector('.badge-adicionado');
-        if (badge) badge.remove();
+        //Ação de remover
+        // Quando o botão de remover é clicado
+        btnRemover.addEventListener("click", () => {
+        const lista = JSON.parse(
+            localStorage.getItem("techfood_pedidos") || "[]",
+        );
 
-        if (listaResumo.children.length === 0) {
-            secaoResumo.style.display = 'none';
-        }
+        lista.splice(indice, 1);
+
+        localStorage.setItem("techfood_pedidos");
+        renderizarPedidos();
+        });
+
+        // Adiciona o texto dentro do item da lista
+        li.appendChild(textoSpan);
+
+        // Adiciona o botão de remover dentro do item
+        li.appendChild(btnRemover);
+
+        // Adiciona o item completo na lista de resumo
+        lista.appendChild(li);
+
+        total += pedido.subtotal
+        
+        const totalFmt = 'R$' + total.toFixed(2).replace(',', '.')
     });
+}
 
-    itemLi.appendChild(textoSpan);
-    itemLi.appendChild(btnRemover);
-    listaResumo.appendChild(itemLi);
+function configurarLimparPedidos (){
+    const btn = document.querySelector("#btn-limpar-pedidos")
+
+    if(!btn) return
+
+    btn.addEventListener("click", function(){
+        localStorage.removeItem("techfood_pedidos")
+        renderizarPedidos()
+    })
 }

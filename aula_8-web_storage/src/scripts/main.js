@@ -1,100 +1,99 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function(){
     inicializarHoverCards()
     inicializarVitrine()
 })
 
-function inicializarHoverCards(){ //amplia os cards ao entrar com o mouse.
-    const cards = document.querySelectorAll(".card");
-    cards.forEach((card) => {
-        card.addEventListener("mouseenter", () => {
-            card.style.transform = "translateY(-5px)";
-            card.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
-        });
-        card.addEventListener("mouseleave", () => {
-            card.style.transform = "translateY(0)";
-            card.style.boxShadow = "none";
-        });
+function inicializarHoverCards(){
+    
+// 2 INTERATIVIDADE NOS CARDS (Feedback visual)
+const cards = document.querySelectorAll(".card");
+cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+        card.style.transform = "translateY(-5px)";
+        card.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
     });
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0)";
+        card.style.boxShadow = "none";
+    });
+});
+
 }
 
 function inicializarVitrine(){
     const main = document.querySelector("main");
+    if(!main)return
+if (main) {
+    main.addEventListener("click", (event) => {
+        const clicado = event.target;
 
-    if(!main) return //se o main não existir, encerra a função.
+        // Botão Menos
+        if (clicado.classList.contains("btn-menos")) {
+            const prato = clicado.parentElement;
+            const spanQtd = prato.querySelector('.qtd-valor');
+            const valorAtual = Number(spanQtd.textContent);
+            spanQtd.textContent = Math.max(1, valorAtual - 1);
+            atualizarPrecoCard(prato);
+            return;
+        }
 
-    if (main) {
-        main.addEventListener("click", (event) => {
-            const clicado = event.target;
+        // Botão Mais
+        if (clicado.classList.contains("btn-mais")) {
+            const prato = clicado.parentElement;
+            const spanQtd = prato.querySelector('.qtd-valor');
+            spanQtd.textContent = Number(spanQtd.textContent) + 1;
+            atualizarPrecoCard(prato);
+            return;
+        }
 
-            // Botão Menos
-            if (clicado.classList.contains("btn-menos")) {
-                const prato = clicado.parentElement;
-                const spanQtd = prato.querySelector('.qtd-valor');
-                const valorAtual = Number(spanQtd.textContent);
-                spanQtd.textContent = Math.max(1, valorAtual - 1);
-                atualizarPrecoCard(prato);
-                return;
+        // Botão Pedir Agora
+        if (clicado.classList.contains("btn-pedido")) {
+            event.preventDefault();
+            const card = clicado.closest(".card"); // Garante pegar o card pai
+            const nomePrato = card.querySelector("h3").textContent;
+            const quantidade = Number(card.querySelector(".qtd-valor").textContent);
+            const preco = parseFloat(card.querySelector(".preco").getAttribute('data-preco'));
+
+            // Feedback Visual
+            const textoOriginal = clicado.textContent;
+            clicado.textContent = "Adicionado 🥳";
+            clicado.style.backgroundColor = "#27ae60";
+            clicado.disabled = true; // Corrigido: .disabled
+
+            setTimeout(() => {
+                clicado.textContent = textoOriginal;
+                clicado.style.backgroundColor = "";
+                clicado.disabled = false;
+            }, 1500);
+
+            const badgeExistente = card.querySelector(".badge-adicionado")
+
+            if(badgeExistente) badgeExistente.remove()
+                card.insertAdjacentHTML("beforeend", "<span class='badge-adicionado'> 🥳 no resumo </span>");
+            setTimeout(function(){
+                const badge = card.querySelector(".badge-adicionado")
+                if(badge) badge.remove()
+            }, 2000)
+            //resetar a quantidade de itens(novo)
+            const box = card.querySelector(".quantidade-box")
+
+            if(box){
+                box.querySelector(".qtd-valor").textContent = "1"
+                atualizarPrecoCard(box)
             }
 
-            // Botão Mais
-            if (clicado.classList.contains("btn-mais")) {
-                const prato = clicado.parentElement;
-                const spanQtd = prato.querySelector('.qtd-valor');
-                spanQtd.textContent = Number(spanQtd.textContent) + 1;
-                atualizarPrecoCard(prato);
-                return;
-            }
-
-            // Botão Pedir Agora
-            if (clicado.classList.contains("btn-pedido")) {
-                event.preventDefault();
-                const card = clicado.closest(".card"); // Garante pegar o card pai
-                const nomePrato = card.querySelector("h3").textContent;
-                const quantidade = card.querySelector(".qtd-valor").textContent;
-                const preco = card.querySelector(".preco").textContent;
-
-                // Feedback Visual
-                const textoOriginal = clicado.textContent;
-                clicado.textContent = "Adicionado 🥳";
-                clicado.style.backgroundColor = "#27ae60";
-                clicado.disabled = true; // Corrigido: .disabled - desativa temporariamente que o usuário fique spanando cliques.
-
-                setTimeout(() => {
-                    clicado.textContent = textoOriginal;
-                    clicado.style.backgroundColor = ""; //faz ele voltar ao que era padrão no css.
-                    clicado.disabled = false;
-                }, 1500);
-
-                 const badgeExistente = card.querySelector(".badge-adicionado")
-
-                if(badgeExistente) badgeExistente.remove()
-                    card.insertAdjacentHTML("beforeend", "<span class='badge-adicionado'> 🥳 no resumo </span>");
-        
-                setTimeout(function(){
-                    const badge = card.querySelector(".badge-adicionado")
-                    if(badge) badge.remove()
-                }, 2000)
-
-                //resetar a quantidade de itens (novo)
-                const box = card.querySelector('.quantidade-box')
-
-                if(box){ //senão tem o box, não irá fazer nada, mas se existir vamos fazer o reset.
-                    box.querySelector('.qtd-valor').textContent = '1'
-                    atualizarPrecoCard(box)
-                }
-
-                //acionar ação de salvarPedido()
-                salvarPedido({ nome: nomePrato, preco: preco, qtd: quantidade });
-                atualizarContadorPedidos()
-            }
-        });
-    }
+            //adicional açao de salvar pedido
+            salvarPedido({ nome:nomePrato, preco: preco, qtd: quantidade     });
+            atualizarContadorPedidos()
+        }
+    });
+}
 }
 
-function atualizarPrecoCard(box) {
+function atualizarPrecoCard(prato) {
 
     // Pega o card completo (pai do elemento "prato")
-    const card = box.parentElement
+    const card = prato.parentElement
 
     // Seleciona o elemento onde o preço é exibido
     const spanPreco = card.querySelector('.preco')
@@ -124,17 +123,16 @@ function atualizarPrecoCard(box) {
 }
 
 function salvarPedido(pedido){
-    //Leu
-    const lista = JSON.parse(localStorage.getItem('techfood_pedidos') || '[]')
-
-    //Modificou
+    //leu
+    const lista = JSON.parse(localStorage.getItem("techfood_pedidos") || '[]')
+    //modifico
     pedido.subtotal = pedido.preco * pedido.qtd
-    lista.push(pedido) //adiciona a lista.
+    //salvou
+    lista.push(pedido)
+    localStorage.setItem("techfood_pedidos", JSON.stringify(lista))
 
-    //Salvou
-    localStorage.setItem('techfood_pedidos', JSON.stringify(lista)) //adiciona ao localStorage.
 }
 
 function atualizarContadorPedidos(){
-    
+    //continua
 }
