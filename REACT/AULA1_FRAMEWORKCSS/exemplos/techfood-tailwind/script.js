@@ -129,9 +129,9 @@ function criarCardPrato(prato){
     card.className = 'card-prato p-4 bg-white rounded-xl shadow-sm h-full'
     card.innerHTML = 
     `
-        <h3 class="fs-4 fw-bold text-dark mb-2">${prato.nome}</h3>
-        <span class='categoria fs-6 d-block mb-3'>${prato.categoria}</span>
-        <div class='preco fs-5 fw-bold text-success'>${prato.formatarPreco()}</div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">${prato.nome}</h3>
+        <span class='text-sm text-gray-500 block mb-3 categoria'>${prato.categoria}</span>
+        <div class='text-lg font-bold text-green-600'>${prato.formatarPreco()}</div>
     `
     card.addEventListener('click', () => {
         alert(
