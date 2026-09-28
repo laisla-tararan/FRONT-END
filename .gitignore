@@ -1,0 +1,9 @@
+# Dependências do Node.js
+node_modules/
+
+# Pasta de build/saída
+dist/
+
+# Variáveis de ambiente e segredos
+.env
+*.env
