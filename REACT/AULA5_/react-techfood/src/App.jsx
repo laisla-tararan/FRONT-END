@@ -1,35 +1,52 @@
-import Header from "./components/Header";
-import CardPrato from "./components/CardPrato";
-import Footer from "./components/Rodape";
-import './App.css'
-import { useState } from "react";
-import { cardapio } from "./data/cardapio";
+import { useState } from "react"
+import Header from "./components/Header"
+import SecaoCardapio from "./components/SecaoCardapio"
+import Rodape from "./components/Rodape"
+import { cardapio } from "./data/cardapio"
+import "./App.css"
+
+const categorias = ["Prato Principal", "Sobremesa", "Bebida"]
 
 function App() {
-    const [totalItens, setTotalItens] = useState(0)
+  const [totalItens, setTotalItens] = useState(0)
+  const [totalValor, setTotalValor] = useState(0)
 
-    function adicionarAoPedido(quantidade){
-        setTotalItens(totalItens + quantidade)
-    }
+  function adicionarAoPedido(quantidade, preco) {
+    setTotalItens((prevItens) => prevItens + quantidade)
+    setTotalValor((prevValor) => prevValor + quantidade * preco)
+  }
 
-    return (
-        <main className="app">
-            <Header totalItens={totalItens} />
-            <section className="cardapio">
-                {cardapio.map((prato) => (
-                    <CardPrato
-                        key={prato.id}
-                        nome={prato.nome}
-                        preco={prato.preco}
-                        categoria={prato.categoria}
-                        descricao={prato.descricao}
-                        onAdicionar={adicionarAoPedido}
-                    />
-                ))}
-            </section>
-            <Footer />
-        </main>
-    );
+  function limparPedido() {
+    setTotalItens(0)
+    setTotalValor(0)
+  }
+
+  const totalFormato = totalValor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  })
+
+  return (
+    <main className="app">
+      <Header totalItens={totalItens} />
+
+      {categorias.map((categoria) => (
+        <SecaoCardapio
+          key={categoria}
+          titulo={categoria}
+          pratos={cardapio.filter((prato) => prato.categoria === categoria)}
+          adicionarAoPedido={adicionarAoPedido}
+        />
+      ))}
+
+      <p>Total formatado: {totalFormato}</p>
+      <button type="button" className="btn-formatado" onClick={limparPedido}>
+        Limpar
+      </button>
+
+      <Rodape />
+    </main>
+  )
 }
 
 export default App
